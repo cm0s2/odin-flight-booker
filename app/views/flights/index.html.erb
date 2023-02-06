@@ -2,6 +2,12 @@
 
 <h1>Flights</h1>
 
+<%= form_with url: flights_path, method: :get do %>
+  <%= select_tag(:departure_airport_id, options_for_select(@airports)) %>
+  <%= select_tag(:arrival_airport_id, options_for_select(@airports)) %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <div id="flights">
   <% @flights.each do |flight| %>
     <%= render flight %>
