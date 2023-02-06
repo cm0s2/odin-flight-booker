@@ -1,12 +1,11 @@
 <div id="<%= dom_id flight %>">
-  <p>
-    <strong>Airport:</strong>
-    <%= flight.departure_airport.name %>
-  </p>
+  <h2>
+    <%= flight.departure_airport.name %> → <%= flight.arrival_airport.name %> 
+  </h2>
 
   <p>
     <strong>Departure time:</strong>
-    <%= flight.departure_time %>
+    <%= flight.departure_time.strftime("%Y-%m-%d %a %H:%M") %>
   </p>
 
   <p>
