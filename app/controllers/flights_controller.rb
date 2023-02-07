@@ -6,14 +6,18 @@ class FlightsController < ApplicationController
     @flights = Flight.all
 
     if params.has_key?(:departure_airport_id)
-      @flights = @flights.where("departure_airport_id = ?", params[:departure_airport_id])
+      @flights = @flights.where(departure_airport_id: params[:departure_airport_id], arrival_airport_id: params[:arrival_airport_id], departure_time: Date.parse(params[:date]).all_day)
     end
+    # if params.has_key?(:departure_airport_id)
+    #   @flights = @flights.where("departure_airport_id = ?", params[:departure_airport_id])
+    # end
 
-    if params.has_key?(:arrival_airport_id)
-      @flights = @flights.where("arrival_airport_id = ?", params[:arrival_airport_id])
-    end
+    # if params.has_key?(:arrival_airport_id)
+    #   @flights = @flights.where("arrival_airport_id = ?", params[:arrival_airport_id])
+    # end
 
     @airports = Airport.all.map { |a| [a.name, a.id] }
+    @date_options = Flight.dates
   end
 
   # GET /flights/1 or /flights/1.json

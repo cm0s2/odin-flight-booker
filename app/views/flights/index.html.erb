@@ -3,9 +3,15 @@
 <h1>Flights</h1>
 
 <%= form_with url: flights_path, method: :get do %>
-  <%= select_tag(:departure_airport_id, options_for_select(@airports)) %>
-  <%= select_tag(:arrival_airport_id, options_for_select(@airports)) %>
-  <%= submit_tag "Search" %>
+  <%= label_tag :departure_airport_id, "From:" %>
+  <%= select_tag(:departure_airport_id, options_for_select(@airports, params[:departure_airport_id])) %>
+  <%= label_tag :arrival_airport_id, "To:" %>
+  <%= select_tag(:arrival_airport_id, options_for_select(@airports, params[:arrival_airport_id])) %>
+  <%= label_tag :num_tickets, "Number of tickets:" %>
+  <%= select_tag(:num_tickets, options_for_select(1..4, params[:num_tickets])) %>
+  <%= label_tag :date, "Date:" %>
+  <%= select_tag(:date, options_for_select(@date_options, params[:date])) %>
+  <%= submit_tag "Search", name: nil %>
 <% end %>
 
 <div id="flights">
