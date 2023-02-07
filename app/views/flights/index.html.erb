@@ -18,7 +18,7 @@
   <% @flights.each do |flight| %>
     <%= render flight %>
     <p>
-      <%= link_to "Show this flight", flight %>
+      <%= link_to "Book this flight", new_booking_path(flight_id: flight.id, num_tickets: params[:num_tickets]), method: :get %>
     </p>
   <% end %>
 </div>

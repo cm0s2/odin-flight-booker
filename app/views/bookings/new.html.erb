@@ -1,0 +1,23 @@
+<h1>New booking</h1>
+
+<h2>
+  <%= @flight.departure_airport.name %> → <%= @flight.arrival_airport.name %> 
+</h2>
+ <p>
+    <strong>Departure time:</strong>
+    <%= @flight.departure_time.strftime("%Y-%m-%d %a %H:%M") %>
+  </p>
+
+  <p>
+    <strong>Duration:</strong>
+    <%= @flight.duration %>
+  </p>
+
+
+<%= render "form", booking: @booking %>
+
+<br>
+
+<div>
+  <%= link_to "Back to bookings", bookings_path %>
+</div>
