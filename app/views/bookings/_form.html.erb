@@ -11,9 +11,16 @@
     </div>
   <% end %>
 
-  <div>
+  <%= hidden_field(:booking, :flight_id, value: booking.flight.id ) %>
 
-  </div>
+  <%= form.fields_for :passengers do |passenger_form| %>
+    <div>
+      <%= label_tag :name, "Name:" %>
+      <%= passenger_form.text_field :name %>
+      <%= label_tag :email, "Email:" %>
+      <%= passenger_form.text_field :email %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit %>
