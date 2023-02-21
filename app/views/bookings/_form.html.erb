@@ -13,14 +13,35 @@
 
   <%= hidden_field(:booking, :flight_id, value: booking.flight.id ) %>
 
-  <%= form.fields_for :passengers do |passenger_form| %>
-    <div>
-      <%= label_tag :name, "Name:" %>
-      <%= passenger_form.text_field :name %>
-      <%= label_tag :email, "Email:" %>
-      <%= passenger_form.text_field :email %>
-    </div>
-  <% end %>
+  <div data-controller="passenger">
+    <template data-passenger-target="template">
+      <%= form.fields_for :passengers, Passenger.new, child_index: "NEW_PASSENGER" do |passenger_form| %>
+      
+        <div class="passenger-fields">
+          <%= passenger_form.hidden_field :_destroy %>
+          <%= label_tag :name, "Name:" %>
+          <%= passenger_form.text_field :name %>
+          <%= label_tag :email, "Email:" %>
+          <%= passenger_form.text_field :email %>
+          <button data-action="passenger#remove_passenger" type="button">Remove passenger</button>
+        </div>
+        
+      <% end %>
+    </template>
+  
+
+    <%= form.fields_for :passengers do |passenger_form| %>
+      <div>
+        <%= label_tag :name, "Name:" %>
+        <%= passenger_form.text_field :name %>
+        <%= label_tag :email, "Email:" %>
+        <%= passenger_form.text_field :email %>
+      </div>
+    <% end %>
+
+    <button data-passenger-target="add_passenger" data-action="passenger#add_passenger" type="button">Add passenger</button>
+
+  </div>
 
   <div>
     <%= form.submit %>
