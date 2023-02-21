@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Here are the details for your booked flight, <%= @passenger.name %></h1>
+    <p>
+      <strong>From:</strong> <%= @flight.departure_airport.name %>
+    </p>
+    <p>
+      <strong>To:</strong> <%= @flight.arrival_airport.name %>
+    </p>
+    <p>
+      <strong>Date:</strong> <%= @flight.departure_time.strftime("%Y-%m-%d %a %H:%M") %>
+    </p>
+    
+    <p>Thanks for choosing us and have a great day!</p>
+  </body>
+</html>
